@@ -57,8 +57,8 @@ actor {
     };
   };
 
-  // Login user
-  public func login(email: Text, passwordHash: Text) : async Result.Result<{role: Text}, Text> {
+  // Login user - mengubah menjadi shared func
+  public shared func login(email: Text, passwordHash: Text) : async Result.Result<{role: Text}, Text> {
     switch (emailToPrincipal.get(email)) {
       case (null) {
         return #err("User not found");
@@ -77,6 +77,14 @@ actor {
           };
         };
       };
+    };
+  };
+
+  // Fungsi tambahan untuk mengecek apakah email sudah terdaftar
+  public query func checkEmailExists(email: Text) : async Bool {
+    switch (emailToPrincipal.get(email)) {
+      case (null) { return false; };
+      case (?_) { return true; };
     };
   };
 
