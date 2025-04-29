@@ -45,6 +45,27 @@ const Login = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 flex items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
       <div className="max-w-md w-full bg-gradient-to-br from-blue-900/30 to-purple-900/30 p-8 rounded-lg shadow-xl border border-blue-400/50 animate-pulse-slow relative glow-container">
+        {/* Tombol Kembali ke Home */}
+        <Link 
+          to="/" 
+          className="absolute top-4 left-4 text-gray-300 hover:text-white transition-colors"
+        >
+          <svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            className="h-6 w-6" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            stroke="currentColor"
+          >
+            <path 
+              strokeLinecap="round" 
+              strokeLinejoin="round" 
+              strokeWidth={2} 
+              d="M10 19l-7-7m0 0l7-7m-7 7h18" 
+            />
+          </svg>
+        </Link>
+
         {/* Glow effect overlay */}
         <div className="absolute inset-0 rounded-lg glow-effect"></div>
         

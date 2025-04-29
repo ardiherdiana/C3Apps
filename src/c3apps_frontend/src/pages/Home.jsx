@@ -2,20 +2,22 @@ import React from "react";
 import { useAuth } from "../contexts/AuthContext";
 import { Link } from "react-router-dom";
 import Navbar from "../components/common/Navbar";
-import Button from "../components/common/Button";
+import Footer from "../components/common/Footer";
+import { StarIcon } from "@heroicons/react/24/outline";
 
 const Home = () => {
-  const { user, logout } = useAuth();
+  const { user } = useAuth();
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800">
       <Navbar />
 
-      <header className="pt-28 px-4 sm:px-6 lg:px-8">
+      <main className="pt-28 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="relative flex rounded-2xl overflow-hidden bg-gradient-to-br from-blue-900/30 to-purple-900/30 border border-gray-700/50 backdrop-blur-sm shadow-xl">
+          {/* Hero Section */}
+          <div className="relative flex rounded-2xl overflow-hidden bg-gradient-to-r from-blue-900/30 to-purple-700/30 border border-gray-700/50 backdrop-blur-sm shadow-xl mb-24">
             <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
-            <div className="relative justify-center items-center md:items-start md:justify-end flex flex-col px-6 py-16  sm:px-12 sm:py-24 lg:py-32 lg:px-16">
+            <div className="relative justify-center items-center md:items-start md:justify-end flex flex-col px-6 py-16 sm:px-12 sm:py-24 lg:py-32 lg:px-16">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight">
                 <span className="block text-blue-100">Welcome to</span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mt-2">
@@ -42,128 +44,307 @@ const Home = () => {
             </div>
             <div className="md:flex hidden items-center justify-center mx-auto">
               <img
-                src="../../../public/assets/img/c3bot.png"
-                alt=""
+                src="/assets/img/c3bot.png"
+                alt="C3 Academy Bot"
                 className="w-96 h-96"
               />
             </div>
           </div>
 
-          {user && (
-            <div className="mt-8 px-4 py-6 rounded-xl bg-gray-800/50 border border-gray-700/50 backdrop-blur-sm shadow-lg">
-              <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-                <div className="flex flex-col">
-                  <span className="text-sm text-gray-400">Logged in as</span>
-                  <span className="text-lg font-medium text-white">
-                    {user.email}
-                  </span>
-                </div>
-                <div className="flex flex-wrap gap-3">
-                  {user.role === "admin" && (
-                    <Link to="/admin/dashboard">
-                      <button className="px-4 py-2 rounded-lg bg-purple-600/20 text-purple-300 hover:bg-purple-600/30 border border-purple-500/30 transition-all duration-200">
-                        Admin Dashboard
-                      </button>
-                    </Link>
-                  )}
-                  <button
-                    onClick={logout}
-                    className="px-4 py-2 rounded-lg bg-red-500/10 text-red-300 hover:bg-red-500/20 border border-red-500/30 transition-all duration-200"
-                  >
-                    Logout
+          {/* Web Programming Courses Section */}
+          <section className="mb-24">
+            <div className="flex items-center justify-between mb-8">
+              <h2 className="text-2xl font-bold text-white">
+                Learn Web Programming
+              </h2>
+              <Link
+                to="/courses"
+                className="text-blue-400 hover:text-blue-300 text-sm font-medium transition-colors"
+              >
+                View All →
+              </Link>
+            </div>
+
+            <div className="flex overflow-x-scroll pb-6 over space-x-6 snap-x snap-mandatory">
+              {[...Array(10)].map((_, i) => (
+                <div
+                  key={i}
+                  className="min-w-[300px] sm:min-w-[350px] bg-gray-800/40 rounded-xl p-4 shadow-lg border border-gray-700/50 backdrop-blur-sm snap-start flex-shrink-0 hover:bg-gray-800/50 transition-all duration-300"
+                >
+                  <div className="relative aspect-video bg-gray-700 rounded-lg overflow-hidden mb-4">
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-900/30 to-purple-900/30"></div>
+                  </div>
+
+                  <h3 className="text-lg font-semibold text-white mb-2">
+                    {`Web Development Fundamentals ${i + 1}`}
+                  </h3>
+                  <p className="text-sm text-gray-400 mb-3">
+                    By Crypto Code Academy
+                  </p>
+
+                  <div className="flex items-center justify-between text-sm mb-4">
+                    <div className="flex items-center">
+                      <StarIcon className="h-4 w-4 text-yellow-400 mr-1" />
+                      <span className="text-yellow-400">4.{8 + i}</span>
+                      <span className="text-gray-500 mx-2">|</span>
+                      <span className="text-gray-400">
+                        {i % 3 === 0
+                          ? "Beginner"
+                          : i % 3 === 1
+                          ? "Intermediate"
+                          : "Advanced"}
+                      </span>
+                    </div>
+                    <div className="flex items-center">
+                      <img
+                        src="../../public/assets/img/icp.png"
+                        className="h-4 w-4 mr-1"
+                        alt="Ethereum"
+                      />
+                      <span className="text-green-400">0.0{i + 1}5 ICP</span>
+                    </div>
+                  </div>
+
+                  <button className="w-full py-2.5 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 rounded-lg text-white text-sm font-medium transition-colors flex items-center justify-center">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5 mr-2"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M13 10V3L4 14h7v7l9-11h-7z"
+                      />
+                    </svg>
+                    Buy with Crypto
                   </button>
                 </div>
-              </div>
+              ))}
             </div>
-          )}
+          </section>
 
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-gray-800/40 backdrop-blur-sm p-6 rounded-xl border border-gray-700/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-gray-800/50 transform hover:-translate-y-1">
-              <div className="h-12 w-12 rounded-full bg-blue-500/20 flex items-center justify-center mb-4">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6 text-blue-400"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                  />
-                </svg>
-              </div>
-              <h2 className="text-xl font-bold text-white mb-2">
-                Expert-Led Courses
+          {/* Why Choose C3Academy Section */}
+          <section className="mb-24">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">
+                Why Choose C3Academy?
               </h2>
-              <p className="text-gray-300">
-                Learn from industry professionals with real-world experience in
-                cutting-edge technologies.
+              <p className="mt-4 text-lg text-gray-300 max-w-2xl mx-auto">
+                Revolutionizing online education with blockchain technology and
+                cryptocurrency integration
               </p>
             </div>
 
-            <div className="bg-gray-800/40 backdrop-blur-sm p-6 rounded-xl border border-gray-700/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-gray-800/50 transform hover:-translate-y-1">
-              <div className="h-12 w-12 rounded-full bg-purple-500/20 flex items-center justify-center mb-4">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6 text-purple-400"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-                  />
-                </svg>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {/* Crypto Payments */}
+              <div className="bg-gray-800/40 backdrop-blur-sm p-6 rounded-xl border border-gray-700/50 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                <div className="h-12 w-12 rounded-full bg-blue-500/20 flex items-center justify-center mb-4">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6 text-blue-400"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">
+                  Crypto-Powered Payments
+                </h3>
+                <p className="text-gray-300">
+                  Purchase courses using Bitcoin, ICP, or our native C3 token.
+                  Enjoy instant settlements and low transaction fees.
+                </p>
               </div>
-              <h2 className="text-xl font-bold text-white mb-2">
-                Interactive Learning
-              </h2>
-              <p className="text-gray-300">
-                Engage with hands-on projects, quizzes, and coding challenges
-                designed to reinforce knowledge.
-              </p>
-            </div>
 
-            <div className="bg-gray-800/40 backdrop-blur-sm p-6 rounded-xl border border-gray-700/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-gray-800/50 transform hover:-translate-y-1">
-              <div className="h-12 w-12 rounded-full bg-green-500/20 flex items-center justify-center mb-4">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6 text-green-400"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                  />
-                </svg>
+              {/* NFT Certificates */}
+              <div className="bg-gray-800/40 backdrop-blur-sm p-6 rounded-xl border border-gray-700/50 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                <div className="h-12 w-12 rounded-full bg-purple-500/20 flex items-center justify-center mb-4">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6 text-purple-400"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4m0 5c0 2.21-3.582 4-8 4s-8-1.79-8-4"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">
+                  NFT Certifications
+                </h3>
+                <p className="text-gray-300">
+                  Receive verifiable NFT certificates upon course completion,
+                  stored permanently on the blockchain.
+                </p>
               </div>
-              <h2 className="text-xl font-bold text-white mb-2">
-                Community Support
-              </h2>
-              <p className="text-gray-300">
-                Join a thriving community of learners and mentors who are ready
-                to help you succeed.
-              </p>
+
+              {/* DAO Governance */}
+              <div className="bg-gray-800/40 backdrop-blur-sm p-6 rounded-xl border border-gray-700/50 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                <div className="h-12 w-12 rounded-full bg-green-500/20 flex items-center justify-center mb-4">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6 text-green-400"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">
+                  DAO Governance
+                </h3>
+                <p className="text-gray-300">
+                  Participate in platform decisions through our decentralized
+                  autonomous organization (DAO).
+                </p>
+              </div>
+
+              {/* Web3 Content */}
+              <div className="bg-gray-800/40 backdrop-blur-sm p-6 rounded-xl border border-gray-700/50 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                <div className="h-12 w-12 rounded-full bg-yellow-500/20 flex items-center justify-center mb-4">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6 text-yellow-400"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M13 10V3L4 14h7v7l9-11h-7z"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">
+                  Web3 Curriculum
+                </h3>
+                <p className="text-gray-300">
+                  Cutting-edge courses on blockchain development, smart
+                  contracts, and decentralized applications.
+                </p>
+              </div>
+
+              {/* Global Access */}
+              <div className="bg-gray-800/40 backdrop-blur-sm p-6 rounded-xl border border-gray-700/50 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                <div className="h-12 w-12 rounded-full bg-pink-500/20 flex items-center justify-center mb-4">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6 text-pink-400"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">
+                  Borderless Access
+                </h3>
+                <p className="text-gray-300">
+                  Learn from anywhere in the world using cryptocurrency, without
+                  traditional banking barriers.
+                </p>
+              </div>
+
+              {/* Earnings */}
+              <div className="bg-gray-800/40 backdrop-blur-sm p-6 rounded-xl border border-gray-700/50 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                <div className="h-12 w-12 rounded-full bg-indigo-500/20 flex items-center justify-center mb-4">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6 text-indigo-400"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-white mb-2">
+                  Earn Crypto
+                </h3>
+                <p className="text-gray-300">
+                  Create and sell courses to earn cryptocurrency, with
+                  transparent revenue sharing via smart contracts.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* Crypto Call to Action */}
+          <div className="bg-gradient-to-r from-blue-900/30 to-purple-900/30 p-8 rounded-2xl border border-gray-700/50 backdrop-blur-sm text-center mb-24">
+            <h3 className="text-2xl font-bold text-white mb-4">
+              Ready to Start Learning with Crypto?
+            </h3>
+            <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
+              Connect your wallet and access a world of decentralized education.
+              Supported networks: ICP, Polygon, Binance Smart Chain.
+            </p>
+            <div className="flex justify-center gap-4">
+              <Link to="/courses">
+                <button className="px-6 py-3 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 hover:from-blue-600 hover:to-purple-700">
+                  Explore Courses
+                </button>
+              </Link>
+              <Link to="/wallet">
+                <button className="px-6 py-3 rounded-lg bg-gray-800/70 hover:bg-gray-700/70 text-gray-100 border border-gray-600/50 font-medium transition-all duration-300">
+                  Connect Wallet
+                </button>
+              </Link>
             </div>
           </div>
         </div>
-      </header>
+      </main>
 
       <style jsx>{`
         .bg-grid-pattern {
           background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.2'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
+
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
       `}</style>
+
+      <Footer />
     </div>
   );
 };
