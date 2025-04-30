@@ -11,6 +11,7 @@ import Register from "./pages/auth/Register";
 import Home from "./pages/Home";
 import Profile from "./components/profile/profile";
 import Courses from "./components/courses/courses";
+import CourseList from "./components/courselist/CourseList";
 
 // Protected route component
 const ProtectedRoute = ({ children, allowedRoles }) => {
@@ -45,7 +46,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/" element={<Home />} />
           <Route path="/courses" element={<Courses />} />
-
+          <Route path="/courselist" element={<CourseList />} />
           {/* Protected user routes */}
           <Route
             path="/profile"
