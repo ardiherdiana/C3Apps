@@ -102,7 +102,7 @@ const BrowseCourses = () => {
                   </div>
 
                   <button className="w-full py-2.5 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 rounded-lg text-white text-sm font-medium transition-colors">
-                    Enroll with Crypto
+                    Buy with Crypto
                   </button>
                 </div>
               </div>
