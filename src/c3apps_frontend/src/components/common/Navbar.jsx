@@ -187,10 +187,7 @@ const Navbar = () => {
               <HeartIcon className="h-5 w-5 mr-1" />
               <span>Course List</span>
             </Link>
-            <Link
-              to="/admin/dashboard"
-              className={getLinkStyle("/admin/dashboard")}
-            >
+            <Link to="/mylearning" className={getLinkStyle("/MyLearning")}>
               <AcademicCapIcon className="h-5 w-5 mr-1" />
               My Learning
             </Link>
@@ -318,12 +315,9 @@ const Navbar = () => {
             <BookOpenIcon className="h-5 w-5 mr-2" />
             <span>Browse Courses</span>
           </Link>
-          <Link
-            to="/my-learning"
-            className={`${getLinkStyle("/my-learning")} w-full`}
-          >
-            <AcademicCapIcon className="h-5 w-5 mr-2" />
-            <span>My Learning</span>
+          <Link to="/mylearning" className={getLinkStyle("/MyLearning")}>
+            <AcademicCapIcon className="h-5 w-5 mr-1" />
+            My Learning
           </Link>
           <Link
             to="/courselist"
