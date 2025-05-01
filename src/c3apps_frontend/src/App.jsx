@@ -12,7 +12,7 @@ import Home from "./pages/Home";
 import Profile from "./components/profile/profile";
 import Courses from "./components/courses/courses";
 import CourseList from "./components/courselist/CourseList";
-
+import MyLearning from "./components/mylearning/MyLearning";
 // Protected route component
 const ProtectedRoute = ({ children, allowedRoles }) => {
   const { user, loading } = useAuth();
@@ -47,6 +47,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/courses" element={<Courses />} />
           <Route path="/courselist" element={<CourseList />} />
+          <Route path="/mylearning" element={<MyLearning />} />
           {/* Protected user routes */}
           <Route
             path="/profile"
